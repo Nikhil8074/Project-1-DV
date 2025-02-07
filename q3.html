@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BedRace Visualization - Performance Analysis</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="CSS/q3.css">
+</head>
+
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.location.href='index.html'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back
+        </button>
+        <h1>Performance Analysis</h1>
+
+        <div class="visualization-container">
+            <div class="visualization-title">Performance Heatmap</div>
+            <div id="heatmap"></div>
+        </div>
+
+        <div class="visualization-container">
+            <div class="controls">
+                <select id="categorySelector"></select>
+                <button class="option-button" onclick="sortBars('year')" id="sortYear">Sort by Year</button>
+                <button class="option-button" onclick="sortBars('asc')" id="sortAsc">Sort Ascending</button>
+                <button class="option-button" onclick="sortBars('desc')" id="sortDesc">Sort Descending</button>
+            </div>
+            <div id="chart"></div>
+        </div>
+    </div>
+
+    <script src="JS/q3.js">
+        
+    </script>
+</body>
+
+</html>

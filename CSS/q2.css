@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e6eeff 100%);
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #7062a3;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: rgba(112, 98, 163, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #1a1a1a;
+    margin: 0 auto;
+    font-size: 2rem;
+}
+
+.charts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.pie-chart-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.bar-chart-section {
+    border-top: 1px solid #eee;
+    padding-top: 2rem;
+}
+
+.chart-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.year-select, .category-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #7062a3;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    color: #7062a3;
+    background: white;
+    cursor: pointer;
+    outline: none;
+}
+
+.year-select:focus, .category-select:focus {
+    border-color: #9084bd;
+    box-shadow: 0 0 0 2px rgba(144, 132, 189, 0.2);
+}
+
+#pieChart {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin-right: 2rem;
+    overflow: visible; /* Ensure labels are not clipped */
+}
+
+#barChart {
+    width: 100%;
+    height: 400px;
+}
+
+.tooltip {
+    position: absolute;
+    display: none;
+    background: rgba(112, 98, 163, 0.9);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    pointer-events: none;
+    transform: translate(20px, 20px);
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: tooltipFade 0.2s ease-in-out;
+}
+
+#legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 95px;
+    padding: 1rem;
+    border-left: 1px solid #eee;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #4a4a4a;
+}
+
+.legend-color {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+}
+
+.pie-slice {
+    transition: transform 0.2s ease-in-out;
+}
+
+.pie-slice:hover {
+    transform: scale(1.05);
+}
+
+.pie-label {
+    font-size: 12px;
+    fill: #333;
+    text-anchor: middle;
+    pointer-events: none;
+    visibility: visible; /* Ensure labels are visible */
+}
+
+.pie-label.visible {
+    visibility: visible;
+}
+
+.leader-line {
+    stroke: #999;
+    stroke-width: 1px;
+    fill: none;
+    opacity: 0.5;
+}
+
+.bar {
+    fill: #7062a3;
+    transition: fill 0.3s ease;
+}
+
+.bar:hover {
+    fill: #9084bd;
+}
+
+.sort-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.sort-button {
+    background: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    display: flex;
+    color: #7062a3;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.sort-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(112, 98, 163, 1) 0%, rgba(112, 98, 163, 0) 60%);
+    transition: transform 0.4s ease-in-out;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.sort-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.sort-button:hover {
+    scale: 1.05;
+    color: white;
+    z-index: 1;
+}
+
+.sort-button.active {
+    color: white;
+    background-color: #7062a3;
+}
